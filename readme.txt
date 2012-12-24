@@ -41,6 +41,7 @@ Please install curl extension for php (http://php.net/manual/en/curl.installatio
 点击富文本编辑器中的七牛图标,在弹出的窗口中点击upload选择要上传的文件,上传完毕后，
 窗口将自动关闭，图片会插入到编辑器相应的位置中。
 
+
 你可以在 后台管理菜单栏Media (多媒体)下的"七牛云储存"查看已经上传了的文件
 
 == todo == 
