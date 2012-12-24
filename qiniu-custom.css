@@ -1,0 +1,5 @@
+.wp_themeSkin span.qiniu_custom{background-image:url('/wp-content/plugins/qiniu-uploader/tinymce/qiniu.png')!important;}
+.wp_themeSkin span.qiniu_custom{background-position:0px -20px}
+.wp_themeSkin .qiniu_custom:hover span.qiniu_custom {background-position:0px 0px}
+
+

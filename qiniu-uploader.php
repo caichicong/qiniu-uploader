@@ -135,3 +135,13 @@ function add_qiniu_plugin_menu() {
 }
 
 add_action( 'admin_menu', 'add_qiniu_plugin_menu' );
+
+function custom_colors() {
+   echo '<style type="text/css">
+.wp_themeSkin span.qiniu_custom{background-image:url("/wp-content/plugins/qiniu-uploader/tinymce/qiniu.png")!important;}
+.wp_themeSkin span.qiniu_custom{background-position:0px -20px}
+.wp_themeSkin .qiniu_custom:hover span.qiniu_custom {background-position:0px 0px}
+         </style>';
+}
+
+add_action('admin_head', 'custom_colors');

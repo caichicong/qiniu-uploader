@@ -4,7 +4,7 @@
 			// Register an example button
 			ed.addButton('qiniu', {
 				title: 'qiniu uploader',
-				image: url + '/qiniu.png',
+				// image: url + '/qiniu.png',
 				onclick: function() {
 					// Display an alert when the user clicks the button
 					//ed.windowManager.alert('Hello world!');
@@ -14,7 +14,8 @@
 						height: 300
 					});
 				},
-				'class': 'bold' // Use the bold icon from the theme
+                     
+				'class': 'qiniu_custom' // Use the bold icon from the theme
 			});
 		}
 	});
@@ -22,4 +23,6 @@
 	// Register plugin with a short name
 	tinymce.PluginManager.add('qiniu', tinymce.plugins.QiniuUploader);
 })();
+
+
 
