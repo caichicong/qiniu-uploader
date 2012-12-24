@@ -1,0 +1,1 @@
+cp -f config.$1.php config.php
