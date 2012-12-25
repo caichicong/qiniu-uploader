@@ -13,9 +13,9 @@ $config = array(
 
     # qiniu account
     'qbox' => array(
-        'access_key' => '9V8EdVCNkAJ4GHLesS7Rh1JsMAOX-ihQd--s4UNx',
-        'secret_key' => 'flz46ZBTpVoNEW6BcfPtRKiWozU5OcBvHpoM-I7T',
-        'bucket'     => 'notes',
+        'access_key' => 'Please input your access_key here',
+        'secret_key' => 'Please input your secret_key here',
+        'bucket'     => 'your bucket name',
     ),
 
 );
