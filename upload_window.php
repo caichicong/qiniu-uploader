@@ -1,19 +1,33 @@
-<?php 
-require_once( dirname(__FILE__) .'/../../../wp-load.php');
-require_once qiniu_ABSPATH. 'bootstrap.php'; 
-$nonce = wp_create_nonce( 'save_qiniu_filekey' );
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+<base href="<?php echo qiniu_URLPATH;?>"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>相册 - 上传图片</title>
 <script type="text/javascript">
-    var $bucket = '<?php echo $bucket; ?>';
+    var $bucket = '<?php echo $QBOX_BUCKET; ?>';
     var $upToken = '<?php echo $upToken;?>';
 	var $nonce = '<?php echo $nonce;?>';
 </script>
-<link href="assets/css/default.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo qiniu_URLPATH?>assets/css/default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<div id="content">
+    <form id="form1" action="#" method="post" enctype="multipart/form-data">
+        <div class="fieldset flash" id="fsUploadProgress">
+            <span class="legend">上传列表</span>
+        </div>
+        <div id="divStatus">0 Files Uploaded</div>
+
+        <div style="padding-left: 5px;">
+            <span id="spanButtonPlaceholder1"></span>
+            <input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
+        </div>
+    </form>
+</div>
+<div id="info"></div>
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/utf8_encode.js"></script>
 <script type="text/javascript" src="assets/js/utf8_decode.js"></script>
@@ -48,7 +62,7 @@ $nonce = wp_create_nonce( 'save_qiniu_filekey' );
             debug: false,
 
             // Button Settings
-            button_image_url : "assets/images/XPButtonUploadText_61x22.png",
+            button_image_url : "<?php echo qiniu_URLPATH; ?>assets/images/XPButtonUploadText_61x22.png",
             button_placeholder_id : "spanButtonPlaceholder1",
             button_width: 61,
             button_height: 22,
@@ -68,23 +82,6 @@ $nonce = wp_create_nonce( 'save_qiniu_filekey' );
 	swfu = new SWFUpload(settings);
     };
 </script>
-</head>
-<body>
 
-
-<div id="content">
-    <form id="form1" action="#" method="post" enctype="multipart/form-data">
-        <div class="fieldset flash" id="fsUploadProgress">
-            <span class="legend">上传列表</span>
-        </div>
-        <div id="divStatus">0 Files Uploaded</div>
-
-        <div style="padding-left: 5px;">
-            <span id="spanButtonPlaceholder1"></span>
-            <input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
-        </div>
-    </form>
-</div>
-<div id="info"></div>
 </body>
 </html>

@@ -13,6 +13,29 @@ some code refer to the following plugin
 http://wordpress.org/extend/plugins/dbank-uploader/
  */
 
+global $QBOX_ACCESS_KEY;
+global $QBOX_SECRET_KEY;
+global $QBOX_BUCKET;
+define('qiniu_ABSPATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
+define('qiniu_URLPATH', WP_PLUGIN_URL.'/'.plugin_basename( dirname(__FILE__) ).'/' );
+define('LIB_DIR', qiniu_ABSPATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR);
+define('QBOX_SDK_DIR', LIB_DIR . 'qiniu' . DIRECTORY_SEPARATOR . 'qbox' . DIRECTORY_SEPARATOR);
+
+require_once LIB_DIR . 'config.php';
+require_once LIB_DIR . 'helper.php';
+require_once QBOX_SDK_DIR . 'rs.php';
+require_once QBOX_SDK_DIR . 'fileop.php';
+require_once QBOX_SDK_DIR . 'client/rs.php';
+require_once QBOX_SDK_DIR . 'authtoken.php';
+
+/**
+ * 配置七牛云存储密钥信息
+ */
+$QBOX_ACCESS_KEY = $config["qbox"]["access_key"];
+$QBOX_SECRET_KEY = $config["qbox"]["secret_key"];
+$QBOX_BUCKET = $config['qbox']['bucket'];
+
+
 /* install qiniu db*/
 global $qiniu_db_version;
 $qiniu_db_version = "1.0";
@@ -35,12 +58,14 @@ function qiniu_install () {
     add_option("qiniu_db_version", $qiniu_db_version);
 }
 
-register_activation_hook(__FILE__,'qiniu_install');
+register_activation_hook(__FILE__, 'qiniu_install');
+
 
 /* plugin class */
 class qiniu_uploader {
     function qiniu_uploader() {
         global $wp_version;
+        global $QBOX_ACCESS_KEY, $QBOX_SECRET_KEY;
 
         // The current version
         define('qiniu_uploader_VERSION', '0.1');
@@ -56,8 +81,6 @@ class qiniu_uploader {
             return;
         } else {
             // define URL
-            define('qiniu_ABSPATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
-            define('qiniu_URLPATH', WP_PLUGIN_URL.'/'.plugin_basename( dirname(__FILE__) ).'/' );
             include_once (dirname (__FILE__)."/tinymce/tinymce.php");
 
         }
@@ -137,11 +160,41 @@ function add_qiniu_plugin_menu() {
 add_action( 'admin_menu', 'add_qiniu_plugin_menu' );
 
 function custom_colors() {
-   echo '<style type="text/css">
-.wp_themeSkin span.qiniu_custom{background-image:url("/wp-content/plugins/qiniu-uploader/tinymce/qiniu.png")!important;}
-.wp_themeSkin span.qiniu_custom{background-position:0px -20px}
-.wp_themeSkin .qiniu_custom:hover span.qiniu_custom {background-position:0px 0px}
-         </style>';
+    echo '<style type="text/css">
+        .wp_themeSkin span.qiniu_custom{background-image:url("/wp-content/plugins/qiniu-uploader/tinymce/qiniu.png")!important;}
+        .wp_themeSkin span.qiniu_custom{background-position:0px -20px}
+        .wp_themeSkin .qiniu_custom:hover span.qiniu_custom {background-position:0px 0px}
+        </style>';
 }
 
 add_action('admin_head', 'custom_colors');
+
+/* popup upload window */
+add_filter('query_vars','upload_window_trigger');
+
+function upload_window_trigger($vars) {
+    $vars[] = 'upload_window';
+    return $vars;
+}
+
+add_action('template_redirect', 'upload_window_check');
+function upload_window_check() {
+    global $QBOX_BUCKET;
+    if(intval(get_query_var('upload_window')) == 1) {
+        /**
+         * 初始化 OAuth Client Transport
+         */
+        $client = QBox_OAuth2_NewClient();
+
+        /**
+         * 初始化 Qbox Reource Service Transport
+         */
+        $rs = QBox_RS_NewService($client, $QBOX_BUCKET);
+        $upToken = QBox_MakeAuthToken(array('expiresIn' => 3600));
+
+        $nonce = wp_create_nonce('save_qiniu_filekey');
+
+        include qiniu_ABSPATH . 'upload_window.php';
+        exit;
+    }
+}

@@ -9,7 +9,7 @@
 					// Display an alert when the user clicks the button
 					//ed.windowManager.alert('Hello world!');
 					ed.windowManager.open({
-						url: url + '/../upload_window.php',
+						url: '/?upload_window=1',
 						width: 500,
 						height: 300
 					});
