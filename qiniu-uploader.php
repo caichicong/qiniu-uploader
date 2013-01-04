@@ -113,7 +113,7 @@ function qiniu_image_list() {
     require(qiniu_ABSPATH . '/lib/config.php');
 
     foreach($image_list as $i) {
-        printf('<div style="display:inline-block;margin:20px;"><img  src="http://%s.dn.qbox.me/%s?imageView/1/w/100/h/100" /><div>%s</div></div>', 
+        printf('<div style="display:inline-block;margin:20px;"><img  src="http://%s.qiniudn.com/%s?imageView/1/w/100/h/100" /><div>%s</div></div>', 
             str_replace('_', '-', $config['qbox']['bucket']), $i['key'], $i['key']);
     }
     echo '</div>';
