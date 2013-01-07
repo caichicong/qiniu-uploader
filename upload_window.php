@@ -28,7 +28,7 @@
     </form>
 </div>
 <div id="info"></div>
-<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="assets/js/utf8_encode.js"></script>
 <script type="text/javascript" src="assets/js/utf8_decode.js"></script>
 <script type="text/javascript" src="assets/js/base64_encode.js"></script>
