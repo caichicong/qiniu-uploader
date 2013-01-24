@@ -28,13 +28,15 @@ http://wordpress.org/extend/plugins/dbank-uploader/
 Please install curl extension for php (http://php.net/manual/en/curl.installation.php)
 
 == Installation ==
-1. input your access key ,secret key and bucket in lib/config.php 
-2. Upload the entire folder to the `/wp-content/plugins/` directory.
-3. Activate the plugin through the 'Plugins' menu in WordPress.
+1. rename qiniu-upload-master.zip to *qiniu-upload.zip* and unzip the file
+2. input your access key ,secret key and bucket in lib/config.php 
+3. Upload the entire folder to the `/wp-content/plugins/` directory.
+4. Activate the plugin through the 'Plugins' menu in WordPress.
 
-1. 在lib/config.php  输入access key ,secret key, bucket  
-2. 上传qiniu-uploader文件夹到 `/wp-content/plugins/`.
-3. 在管理后台启用插件.
+1. 把解压出来的文件夹重名名为qiniu-upload
+2. 在lib/config.php  输入access key ,secret key, bucket  
+3. 上传qiniu-uploader文件夹到 `/wp-content/plugins/`.
+4. 在管理后台启用插件.
 
 == Plugin Usage ==
 
