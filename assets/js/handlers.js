@@ -67,6 +67,11 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 	}
 }
 
+function getFileExtension(filename) {
+      var arr = filename.split('.');
+      return arr[arr.length - 1];
+}
+
 /*
  * 定义一个文件上传前要执行的业务逻辑
  */
@@ -78,7 +83,7 @@ function uploadStart(file) {
 
 		// 首先，为该文件生成一个唯一ID
 		// uniqid() 函数在 public/assets/js/uniqid.js 文件中有定义
-		var fileUniqKey = uniqid('') + file.name;
+		var fileUniqKey = uniqid('') + getFileExtension(file.name);
 
 		// 然后构造 action 表单域的值
 		// generate_rs_put_path() 在 public/assets/js/helper.js 中有定义
