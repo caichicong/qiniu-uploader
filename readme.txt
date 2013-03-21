@@ -33,7 +33,7 @@ Please install curl extension for php (http://php.net/manual/en/curl.installatio
 3. Upload the entire folder to the `/wp-content/plugins/` directory.
 4. Activate the plugin through the 'Plugins' menu in WordPress.
 
-1. 把解压出来的文件夹重名名为qiniu-upload
+1. 把解压出来的文件夹重命名为qiniu-upload
 2. 在lib/config.php  输入access key ,secret key, bucket  
 3. 上传qiniu-uploader文件夹到 `/wp-content/plugins/`.
 4. 在管理后台启用插件.
