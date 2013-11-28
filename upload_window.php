@@ -5,9 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>相册 - 上传图片</title>
 <script type="text/javascript">
-    var $bucket = '<?php echo $QBOX_BUCKET; ?>';
-    var $upToken = '<?php echo $upToken;?>';
-	var $nonce = '<?php echo $nonce;?>';
+        var $bucket = '<?php echo $QBOX_BUCKET; ?>';
+        var $upToken = '<?php echo $upToken;?>';
+        var $nonce = '<?php echo $nonce;?>';
+	var $qiniu_domain = '<?php echo $qiniu_domain;?>';
 </script>
 <link href="<?php echo qiniu_URLPATH?>assets/css/default.css" rel="stylesheet" type="text/css" />
 </head>

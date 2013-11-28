@@ -16,6 +16,8 @@ http://wordpress.org/extend/plugins/dbank-uploader/
 global $QBOX_ACCESS_KEY;
 global $QBOX_SECRET_KEY;
 global $QBOX_BUCKET;
+global $qiniu_domain;
+
 define('qiniu_ABSPATH', WP_PLUGIN_DIR.'/'.plugin_basename( dirname(__FILE__) ).'/' );
 define('qiniu_URLPATH', WP_PLUGIN_URL.'/'.plugin_basename( dirname(__FILE__) ).'/' );
 define('LIB_DIR', qiniu_ABSPATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR);
@@ -35,6 +37,7 @@ $QBOX_ACCESS_KEY = $config["qbox"]["access_key"];
 $QBOX_SECRET_KEY = $config["qbox"]["secret_key"];
 $QBOX_BUCKET = $config['qbox']['bucket'];
 
+$qiniu_domain = $config['domain'];
 
 /* install qiniu db*/
 global $qiniu_db_version;
@@ -179,7 +182,7 @@ function upload_window_trigger($vars) {
 
 add_action('template_redirect', 'upload_window_check');
 function upload_window_check() {
-    global $QBOX_BUCKET;
+    global $QBOX_BUCKET, $qiniu_domain;
     if(intval(get_query_var('upload_window')) == 1) {
         /**
          * 初始化 OAuth Client Transport

@@ -215,7 +215,7 @@ function uploadError(file, errorCode, message) {
 function uploadComplete(file) {
 	var fileUniqKey = this.customSettings.fileUniqIdMapping[file.id];
 	var opener = window.opener;
-	opener.tinyMCE.execCommand('mceInsertContent', false, '<img src="http://' + $bucket.replace('_', '-') + '.qiniudn.com/' + fileUniqKey + '">');
+	opener.tinyMCE.execCommand('mceInsertContent', false, '<img src="http://' + $qiniu_domain + '/' + fileUniqKey + '">');
 
 }
 

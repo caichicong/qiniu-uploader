@@ -17,5 +17,5 @@ $config = array(
         'secret_key' => 'Please input your secret_key here',
         'bucket'     => 'your bucket name',
     ),
-
+    'domain' => 'your custom domain'
 );
