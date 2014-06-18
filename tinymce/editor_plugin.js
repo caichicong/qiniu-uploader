@@ -4,7 +4,7 @@
 			// Register an example button
 			ed.addButton('qiniu', {
 				title: 'qiniu uploader',
-				// image: url + '/qiniu.png',
+				image: url + '/qiniu.png',
 				onclick: function() {
 					// Display an alert when the user clicks the button
 					//ed.windowManager.alert('Hello world!');
